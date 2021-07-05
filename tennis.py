@@ -62,6 +62,7 @@ point_i = 1
 #initialise score log
 points_score_log = [[[points_score]]]
 games_score_log = [[games_score]]
+set_score_log = [set_score]
 
 # play a set
 while True:
@@ -72,9 +73,7 @@ while True:
         winner_index = players.index(winner)
 
         # move in score array
-        if points_score == ["A",40] and winner_index != server_index:
-            csi=[3,3]
-        elif points_score == [40,"A"] and winner_index == server_index:
+        if (points_score == ["A",40] and winner_index != server_index) or (points_score == [40,"A"] and winner_index == server_index):
             csi=[3,3]
         elif winner_index == server_index:
             csi[0]+=1
@@ -95,7 +94,6 @@ while True:
             break
 
     # who won that game
-    print(points_score)
     game_winner = sr[points_score.index("W")]
     print ("set ", set_i, ", game ", game_i, " goes to ", game_winner, ":", points_score)
 
@@ -105,14 +103,24 @@ while True:
     elif game_winner == players[1]:
         games_score[1] += 1
 
-    print(games_score)
-    input("Press Enter to continue...")
-
+    # end of set check
     if games_score[0] == games_score[1] == 6:
         print("Tiebreak to 7")
-    elif (games_score[0] == 6 and games_score[1] <= 4) or (games_score[1] == 6 and games_score[0] <= 4):
-        games_score = [0,0]
         break
+    elif (games_score[0] >= 6 and games_score[1] <= 4) or (games_score[1] >= 6 and games_score[0] <= 4):
+        set_winner = players[games_score.index(max(games_score))]
+        games_score = [0,0]
+        print("set to " + set_winner)
+        
+        if set_winner == players[0]:
+            set_score[0] += 1
+        elif set_winner == players[1]:
+            set_score[1] += 1
+        print("games score in this set: ",set_score)
+        break
+
+    print("games score in this set ", games_score)
+    input("Press Enter to continue...")
 
 
 #print(games_score)
