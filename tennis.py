@@ -22,9 +22,9 @@ i_game = 1
 i_point = 1
 
 #initialise score log
-sl_points = [[[s_points]]]
-sl_games = [[s_games]]
-sl_sets = [s_sets]
+sl_points = [[[[0,0]]]]
+sl_games = [[[0,0]]]
+sl_sets = [[0,0]]
 
 # false match over
 match_over = False
@@ -66,6 +66,7 @@ while True:
                 # reset 
                 i_point = 1
                 csi = [0,0]
+                sl_games[i_set-1].append(s_games)
                 break
 
         # grow log array
@@ -112,7 +113,9 @@ while True:
             #print("match score in sets: ",set_score)
 
             # log arrays increase size
-            sl_points.append([[]])
+            sl_points.append([[0,0]])
+            sl_games.append([0,0])
+            sl_sets.append(s_sets)
 
             # increment set
             i_set += 1
@@ -131,8 +134,6 @@ while True:
 
             continue
 
-        #print("games score in this set ", games_score)
-        #input("Press Enter to continue...")
 
 # print results
 m_winner = players[s_sets.index(max(s_sets))]
