@@ -113,8 +113,8 @@ while True:
             #print("match score in sets: ",set_score)
 
             # log arrays increase size
-            sl_points.append([[0,0]])
-            sl_games.append([0,0])
+            sl_points.append([[[0,0]]])
+            sl_games.append([[0,0]])
             sl_sets.append(s_sets)
 
             # increment set
