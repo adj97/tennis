@@ -22,9 +22,9 @@ i_game = 1
 i_point = 1
 
 #initialise score log
-sl_points = [[[[0,0]]]]
-sl_games = [[[0,0]]]
-sl_sets = [[0,0]]
+sl_points = [[[]]]
+sl_games = [[]]
+sl_sets = []
 
 # false match over
 match_over = False
@@ -57,7 +57,7 @@ while True:
 
             # get + log new score
             s_points = pm[csi[0]][csi[1]]
-            sl_points[i_set-1][i_game-1].append(s_points)
+            sl_points[i_set-1][i_game-1].append(s_points.copy())
 
             #print("point to " + winner + ": ", points_score)
             i_point += 1
@@ -66,11 +66,10 @@ while True:
                 # reset 
                 i_point = 1
                 csi = [0,0]
-                sl_games[i_set-1].append(s_games)
                 break
 
         # grow log array
-        sl_points[i_set-1].append([[0,0]])
+        sl_points[i_set-1].append([])
 
         # who won that game
         game_winner = sr[s_points.index("W")]
@@ -87,6 +86,9 @@ while True:
             s_games[0] += 1
         elif game_winner == players[1]:
             s_games[1] += 1
+
+        # log games score
+        sl_games[i_set-1].append(s_games.copy())
 
         # end of set check
         if s_games[0] == s_games[1] == 6:
@@ -113,9 +115,9 @@ while True:
             #print("match score in sets: ",set_score)
 
             # log arrays increase size
-            sl_points.append([[[0,0]]])
-            sl_games.append([[0,0]])
-            sl_sets.append(s_sets)
+            sl_points.append([[]])
+            sl_games.append([])
+            sl_sets.append(s_sets.copy())
 
             # increment set
             i_set += 1
