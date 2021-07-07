@@ -45,7 +45,7 @@ while True:
         sl_points[i_set-1].append([])
         
         # play one game
-        while True:
+        while "W" not in s_points:
             # simulate a 50/50 single point
             winner = random.choice(players)
             winner_index = players.index(winner)
@@ -65,11 +65,9 @@ while True:
             #print("point to " + winner + ": ", points_score)
             i_point += 1
 
-            if str(s_points[0]) == "W" or str(s_points[1]) == "W":
-                # reset 
-                i_point = 1
-                csi = [0,0]
-                break
+        # reset 
+        i_point = 1
+        csi = [0,0]
 
         # who won that game
         game_winner = sr[s_points.index("W")]
