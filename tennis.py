@@ -25,32 +25,32 @@ sl_sets = []
 # false match over
 match_over = False
 
+i_set = 1
+
 # play one match
 # loop through sets
 while True:
 
-    i_set = 1
-
     if match_over == True:
             break
+
+    i_game = 1
     
     # play one set
     # loop through games
     while True:
-
-        i_game = 1
 
         if match_over == True:
             break
 
         # grow log array
         sl_points[i_set-1].append([])
+
+        i_point = 1
         
         # play one game
         # loop through points
         while "W" not in s_points:
-
-            i_point = 1
 
             # simulate a 50/50 single point
             winner = random.choice(players)
@@ -71,13 +71,14 @@ while True:
             #print("point to " + winner + ": ", points_score)
             i_point += 1
 
-        # reset 
-        i_point = 1
-        csi = [0,0]
-
         # who won that game
         game_winner = sr[s_points.index("W")]
         #print ("set ", set_i, ", game ", game_i, " goes to ", game_winner, ":", points_score)
+
+        # reset 
+        i_point = 1
+        csi = [0,0]
+        s_points = pm[csi[0]][csi[1]]
 
         # iterate game
         i_game += 1
@@ -137,7 +138,7 @@ while True:
                 break
 
             # log arrays increase size
-            sl_points.append([[]])
+            sl_points.append([])
             sl_games.append([])
 
             continue
