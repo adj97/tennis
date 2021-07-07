@@ -68,8 +68,7 @@ while max(s_sets) < 3:
         game_winner = sr[s_points.index("W")]
         #print ("set ", set_i, ", game ", game_i, " goes to ", game_winner, ":", points_score)
 
-        # reset 
-        i_point = 1
+        # reset
         csi = [0,0]
         s_points = pm[csi[0]][csi[1]]
 
@@ -130,7 +129,6 @@ while max(s_sets) < 3:
 
     # increment set
     i_set += 1
-    i_game = 1
 
     # log arrays increase size
     
