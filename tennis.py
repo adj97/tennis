@@ -96,8 +96,16 @@ while True:
         sl_games[i_set-1].append(s_games.copy())
 
         # end of set check
-        if s_games[0] == s_games[1] == 6:
+        if max(s_games) == 6 and min(s_games) <= 4:
+            # easy win
+            break
+        elif max(s_games) == 7 and min(s_games) == 5:
+            # two clear games
+            break
+        elif s_games == [6,6]:
             # tiebreak
+
+            # do something
             if s_sets==[2,2]:
                 # 5th set tie break
                 #print("Tiebreak to 10")
@@ -106,42 +114,38 @@ while True:
                 # regular set tiebreak
                 #print("Tiebreak to 7")
                 pass
+
+            # s_games will be [7,6] or [6,7]
+            # end of set
+
             break
-        elif (s_games[0] >= 6 and s_games[1] <= 5) or (s_games[1] >= 6 and s_games[0] <= 5):
-            set_winner = players[s_games.index(max(s_games))]
-            s_games = [0,0]
-            #print("set to " + set_winner)
-            
-            # add score to sets
-            if set_winner == players[0]:
-                s_sets[0] += 1
-            elif set_winner == players[1]:
-                s_sets[1] += 1
-            #print("match score in sets: ",set_score)
+    
+    # get winner
+    set_winner = players[s_games.index(max(s_games))]
+    s_games = [0,0]
+    #print("set to " + set_winner)
+    
+    # add score to sets
+    if set_winner == players[0]:
+        s_sets[0] += 1
+    elif set_winner == players[1]:
+        s_sets[1] += 1
+    #print("match score in sets: ",set_score)
 
-            # log set score
-            sl_sets.append(s_sets.copy())
+    # log set score
+    sl_sets.append(s_sets.copy())
 
-            # increment set
-            i_set += 1
-            i_game = 1
+    # increment set
+    i_set += 1
+    i_game = 1
 
-            # at the end of a set check for the end of match
-            if s_sets == [3,0] or s_sets == [0,3]:
-                match_over = True
-                break
-            elif s_sets == [3,1] or s_sets == [1,3]:
-                match_over = True
-                break
-            elif s_sets == [3,2] or s_sets == [2,3]:
-                match_over = True
-                break
+    # at the end of a set check for the end of match
+    if (s_sets == [3,0] or s_sets == [0,3]) or (s_sets == [3,1] or s_sets == [1,3]) or (s_sets == [3,2] or s_sets == [2,3]):
+        break
 
-            # log arrays increase size
-            sl_points.append([])
-            sl_games.append([])
-
-            continue
+    # log arrays increase size
+    sl_points.append([])
+    sl_games.append([])
 
 
 # print results
