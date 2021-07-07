@@ -90,10 +90,7 @@ while max(s_sets) < 3:
         sr.reverse()
 
         # games score
-        if game_winner == players[0]:
-            s_games[0] += 1
-        elif game_winner == players[1]:
-            s_games[1] += 1
+        s_games[players.index(game_winner)] += 1
 
         # log games score
         sl_games[i_set-1].append(s_games.copy())
