@@ -17,10 +17,6 @@ server_index = players.index(server)
 #print (server + " to serve")
 sr = [players[server_index],players[1-server_index]]
 
-i_set = 1
-i_game = 1
-i_point = 1
-
 #initialise score log
 sl_points = [[]]
 sl_games = [[]]
@@ -29,14 +25,20 @@ sl_sets = []
 # false match over
 match_over = False
 
-# play a match
+# play one match
+# loop through sets
 while True:
+
+    i_set = 1
 
     if match_over == True:
             break
     
-    # play a set of games
+    # play one set
+    # loop through games
     while True:
+
+        i_game = 1
 
         if match_over == True:
             break
@@ -45,7 +47,11 @@ while True:
         sl_points[i_set-1].append([])
         
         # play one game
+        # loop through points
         while "W" not in s_points:
+
+            i_point = 1
+
             # simulate a 50/50 single point
             winner = random.choice(players)
             winner_index = players.index(winner)
