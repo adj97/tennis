@@ -18,8 +18,8 @@ server_index = players.index(server)
 sr = [players[server_index],players[1-server_index]]
 
 #initialise score log
-sl_points = [[]]
-sl_games = [[]]
+sl_points = []
+sl_games = []
 sl_sets = []
 
 # false match over
@@ -29,12 +29,15 @@ i_set = 1
 
 # play one match
 # loop through sets
-while True:
+while max(s_sets) < 3:
 
     if match_over == True:
             break
 
     i_game = 1
+
+    sl_points.append([])
+    sl_games.append([])
     
     # play one set
     # loop through games
@@ -138,14 +141,6 @@ while True:
     # increment set
     i_set += 1
     i_game = 1
-
-    # at the end of a set check for the end of match
-    if (s_sets == [3,0] or s_sets == [0,3]) or (s_sets == [3,1] or s_sets == [1,3]) or (s_sets == [3,2] or s_sets == [2,3]):
-        break
-
-    # log arrays increase size
-    sl_points.append([])
-    sl_games.append([])
 
 
 # print results
